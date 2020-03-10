@@ -35,8 +35,11 @@ const App = () => {
   const classes = useStyles();
   const [data, setData] = useState({});
   useEffect(() => {
+    let url = "https://corona.lmao.ninja/all";
     axios
-      .get("https://corona.lmao.ninja/all")
+      .get(`https://cors-anywhere.herokuapp.com/${url}`, {
+        headers: { "Access-Control-Allow-Origin": "*" }
+      })
       .then(res => {
         if (res.status === 200) {
           setData(res.data);
