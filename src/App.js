@@ -33,7 +33,9 @@ const useStyles = makeStyles(theme => ({
 
 const App = () => {
   const classes = useStyles();
-  const [data, setData] = useState({});
+  const [allData, setAllData] = useState({});
+  const [indiaData, setIndiaData] = useState([]);
+
   useEffect(() => {
     let url = "https://corona.lmao.ninja/all";
     axios
@@ -42,11 +44,23 @@ const App = () => {
       })
       .then(res => {
         if (res.status === 200) {
-          setData(res.data);
+          setAllData(res.data);
         }
       })
       .catch(err => console.log(err));
-  }, []);
+    let url2 = "https://corona.lmao.ninja/countries";
+    axios
+      .get(`https://cors-anywhere.herokuapp.com/${url2}`, {
+        headers: { "Access-Control-Allow-Origin": "*" }
+      })
+      .then(res => {
+        console.log(res);
+        let dataOfIndia = res.data.filter(d => d.country === "India");
+        console.log(dataOfIndia);
+        setIndiaData(dataOfIndia);
+      })
+      .catch(err => console.log(err));
+  }, [allData, setAllData, indiaData, setIndiaData]);
 
   return (
     <Grid container direction="column" justify="center" alignItems="center">
@@ -62,11 +76,24 @@ const App = () => {
       <Grid item className={classes.mainContainer}>
         <Card className={classes.card}>
           <CardContent>
-            {Object.entries(data).map(([key, value]) => (
+            {Object.entries(allData).map(([key, value]) => (
               <Typography key={key} variant="h5" className={classes.caseData}>
-                {"Confirmed " + key} : {value}
+                {"Confirmed WorldWide " + key} : {value}
               </Typography>
             ))}
+          </CardContent>
+        </Card>
+      </Grid>
+      <Grid item className={classes.mainContainer}>
+        <Card className={classes.card}>
+          <CardContent>
+            {indiaData.map((data, i) => {
+              return (
+                <Typography key={i} variant="h5" className={classes.caseData}>
+                  {"cases in India" + data}
+                </Typography>
+              );
+            })}
           </CardContent>
         </Card>
       </Grid>
