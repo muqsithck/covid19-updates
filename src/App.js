@@ -60,7 +60,7 @@ const App = () => {
         setIndiaData(dataOfIndia);
       })
       .catch(err => console.log(err));
-  }, [allData, setAllData, indiaData, setIndiaData]);
+  }, []);
 
   return (
     <Grid container direction="column" justify="center" alignItems="center">
