@@ -28,6 +28,12 @@ const useStyles = makeStyles(theme => ({
   caseData: {
     lineHeight: 2,
     fontKerning: "normal"
+  },
+  mainHead: {
+    background: "#1f4037",
+    background: " -webkit-linear-gradient(to right, #99f2c8, #1f4037)",
+    background: "linear-gradient(to right, #99f2c8, #1f4037)",
+    color: "#eee"
   }
 }));
 
@@ -56,7 +62,6 @@ const App = () => {
       .then(res => {
         console.log(res);
         let dataOfIndia = res.data.filter(d => d.country === "India");
-        console.log(dataOfIndia);
         setIndiaData(dataOfIndia);
       })
       .catch(err => console.log(err));
@@ -66,7 +71,7 @@ const App = () => {
     <Grid container direction="column" justify="center" alignItems="center">
       <Grid item className={classes.mainContainer}>
         <Card>
-          <CardContent>
+          <CardContent className={classes.mainHead}>
             <Typography variant="h2" className={classes.mainHeading}>
               Corona Virus Cases
             </Typography>
@@ -76,9 +81,12 @@ const App = () => {
       <Grid item className={classes.mainContainer}>
         <Card className={classes.card}>
           <CardContent>
+            <Typography variant="h3" className={classes.caseData}>
+              Cases WorldWide
+            </Typography>
             {Object.entries(allData).map(([key, value]) => (
               <Typography key={key} variant="h5" className={classes.caseData}>
-                {"Confirmed WorldWide " + key} : {value}
+                {key} : {value}
               </Typography>
             ))}
           </CardContent>
@@ -86,15 +94,33 @@ const App = () => {
       </Grid>
       <Grid item className={classes.mainContainer}>
         <Card className={classes.card}>
-          <CardContent>
-            {indiaData.map((data, i) => {
-              return (
-                <Typography key={i} variant="h5" className={classes.caseData}>
-                  {"cases in India" + data}
+          {indiaData.map((data, i) => {
+            return (
+              <CardContent key={i}>
+                <Typography variant="h3" className={classes.caseData}>
+                  Cases in India
                 </Typography>
-              );
-            })}
-          </CardContent>
+                <Typography variant="h5" className={classes.caseData}>
+                  {"Total cases in India : " + data.cases}
+                </Typography>
+                <Typography variant="h5" className={classes.caseData}>
+                  {"Critical : " + data.critical}
+                </Typography>
+                <Typography variant="h5" className={classes.caseData}>
+                  {"Deaths : " + data.deaths}
+                </Typography>
+                <Typography variant="h5" className={classes.caseData}>
+                  {"recovered : " + data.recovered}
+                </Typography>
+                <Typography variant="h5" className={classes.caseData}>
+                  {"Today cases :  " + data.todayCases}
+                </Typography>
+                <Typography variant="h5" className={classes.caseData}>
+                  {"Today death : " + data.todayDeaths}
+                </Typography>
+              </CardContent>
+            );
+          })}
         </Card>
       </Grid>
     </Grid>
