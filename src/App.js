@@ -60,10 +60,19 @@ const App = () => {
                 ❤
               </span>
               with <br />
-              <a href="https://reactjs.org/">React</a>
-              <br />
+              <a
+                style={{ textDecoration: "none", color: "marron" }}
+                href="https://reactjs.org/"
+              >
+                React
+              </a>{" "}
               &&
-              <a href="https://material-ui.com/">Material UI</a>
+              <a
+                style={{ textDecoration: "none", color: "marron" }}
+                href="https://material-ui.com/"
+              >
+                Material UI
+              </a>
             </Typography>
             <Typography variant="h6">
               ---Aditya{" "}
