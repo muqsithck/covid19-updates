@@ -60,6 +60,7 @@ const App = () => {
         alignItems="center"
         style={{ marginTop: "3em", textAlign: "center" }}
       >
+        <p>{process.env.REACT_APP_BASE_URL}</p>
         <Card>
           <CardContent>
             <Typography variant="h6">

@@ -23,9 +23,9 @@ const IndianCases = props => {
   const [indianData, setIndianData] = useState([]);
 
   useEffect(() => {
-    let url = "https://corona.lmao.ninja/countries";
+    let url = process.env.REACT_APP_PROD_API_URL;
     axios
-      .get(`https://cors-anywhere.herokuapp.com/${url}`, {
+      .get(`${url}countries`, {
         headers: { "Access-Control-Allow-Origin": "*" }
       })
       .then(res => {
@@ -60,9 +60,7 @@ const IndianCases = props => {
           </Typography>
           <hr />
           {!indianData || indianData.length === 0 ? (
-            <Typography variant="h6">
-              I guess we maxed out the request! Please! Try again later
-            </Typography>
+            <Typography variant="h6">Loading...</Typography>
           ) : (
             indianData.map((data, i) => {
               return (

@@ -24,9 +24,9 @@ const WorldWideCases = props => {
 
   const [globalData, setGlobalData] = useState([]);
   useEffect(() => {
-    let url = "https://corona.lmao.ninja/all";
+    let url = process.env.REACT_APP_PROD_API_URL;
     axios
-      .get(`https://cors-anywhere.herokuapp.com/${url}`, {
+      .get(`${url}all`, {
         headers: { "Access-Control-Allow-Origin": "*" }
       })
       .then(res => {
@@ -49,9 +49,7 @@ const WorldWideCases = props => {
           </Typography>
           <hr />
           {Object.entries(globalData).length === 0 ? (
-            <Typography variant="h6">
-              I guess we maxed out the request! Please! Try again later
-            </Typography>
+            <Typography variant="h6">Loading...</Typography>
           ) : (
             Object.entries(globalData).map(([key, value]) => {
               return (

@@ -31,15 +31,17 @@ const InputSearch = props => {
     setCountryName(userSearchResult);
   };
   useEffect(() => {
-    let url = "https://corona.lmao.ninja/countries";
+    let url = process.env.REACT_APP_PROD_API_URL;
     axios
-      .get(`https://cors-anywhere.herokuapp.com/${url}`, {
+      .get(`${url}countries`, {
         headers: { "Access-Control-Allow-Origin": "*" }
       })
       .then(res => {
         if (res.status === 200) {
           let searchResult = res.data.filter(
-            countryCoronaResult => countryCoronaResult.country === countryName
+            countryCoronaResult =>
+              countryCoronaResult.country.substring(0, 4) ===
+              countryName.substring(0, 4)
           );
           setCountries([...searchResult]);
         }
