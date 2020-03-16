@@ -49,7 +49,7 @@ const WorldWideCases = props => {
           </Typography>
           <hr />
           {Object.entries(globalData).map(([key, value]) => {
-            if (globalData.length === 0 && !globalData) {
+            if (globalData.length === 0 || !globalData) {
               return (
                 <Typography variant="h5">
                   I guess we maxed out the request! Please! Try again later

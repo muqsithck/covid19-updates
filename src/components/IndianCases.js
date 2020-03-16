@@ -59,7 +59,7 @@ const IndianCases = props => {
             Cases in India
           </Typography>
           <hr />
-          {!indianData ? (
+          {!indianData || indianData.length === 0 ? (
             <Typography variant="h5">
               I guess we maxed out the request! Please! Try again later
             </Typography>
