@@ -164,6 +164,8 @@ const InputSearch = props => {
                         {countryData.todayDeaths}
                       </span>
                     </Typography>
+                    <br />
+                    <hr />
                   </div>
                 );
               })}
