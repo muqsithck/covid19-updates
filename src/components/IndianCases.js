@@ -59,69 +59,78 @@ const IndianCases = props => {
             Cases in India
           </Typography>
           <hr />
-          {indianData.map((data, i) => {
-            return (
-              <div key={i}>
-                <Typography variant={matchesMD ? "h6" : "h5"}>
-                  Total cases in India :{" "}
-                  <span
-                    style={{ color: colors(data.cases), fontWeight: "bold" }}
-                  >
-                    {data.cases}
-                  </span>
-                </Typography>
-                <Typography variant={matchesMD ? "h6" : "h5"}>
-                  Critical :{" "}
-                  <span
-                    style={{ color: colors(data.critical), fontWeight: "bold" }}
-                  >
-                    {data.critical}
-                  </span>
-                </Typography>
-                <Typography variant={matchesMD ? "h6" : "h5"}>
-                  Deaths :{" "}
-                  <span
-                    style={{ color: colors(data.deaths), fontWeight: "bold" }}
-                  >
-                    {data.deaths}
-                  </span>
-                </Typography>
-                <Typography variant={matchesMD ? "h6" : "h5"}>
-                  Recovered :{" "}
-                  <span
-                    style={{
-                      color: colors(data.recovered),
-                      fontWeight: "bold"
-                    }}
-                  >
-                    {data.recovered}
-                  </span>
-                </Typography>
-                <Typography variant={matchesMD ? "h6" : "h5"}>
-                  Today's Cases :{" "}
-                  <span
-                    style={{
-                      color: colors(data.todayCases),
-                      fontWeight: "bold"
-                    }}
-                  >
-                    {data.todayCases}
-                  </span>
-                </Typography>
-                <Typography variant={matchesMD ? "h6" : "h5"}>
-                  Today's Deaths :{" "}
-                  <span
-                    style={{
-                      color: colors(data.todayDeaths),
-                      fontWeight: "bold"
-                    }}
-                  >
-                    {data.todayDeaths}
-                  </span>
-                </Typography>
-              </div>
-            );
-          })}
+          {!indianData ? (
+            <Typography variant="h5">
+              I guess we maxed out the request! Please! Try again later
+            </Typography>
+          ) : (
+            indianData.map((data, i) => {
+              return (
+                <div key={i}>
+                  <Typography variant={matchesMD ? "h6" : "h5"}>
+                    Total cases in India :{" "}
+                    <span
+                      style={{ color: colors(data.cases), fontWeight: "bold" }}
+                    >
+                      {data.cases}
+                    </span>
+                  </Typography>
+                  <Typography variant={matchesMD ? "h6" : "h5"}>
+                    Critical :{" "}
+                    <span
+                      style={{
+                        color: colors(data.critical),
+                        fontWeight: "bold"
+                      }}
+                    >
+                      {data.critical}
+                    </span>
+                  </Typography>
+                  <Typography variant={matchesMD ? "h6" : "h5"}>
+                    Deaths :{" "}
+                    <span
+                      style={{ color: colors(data.deaths), fontWeight: "bold" }}
+                    >
+                      {data.deaths}
+                    </span>
+                  </Typography>
+                  <Typography variant={matchesMD ? "h6" : "h5"}>
+                    Recovered :{" "}
+                    <span
+                      style={{
+                        color: colors(data.recovered),
+                        fontWeight: "bold"
+                      }}
+                    >
+                      {data.recovered}
+                    </span>
+                  </Typography>
+                  <Typography variant={matchesMD ? "h6" : "h5"}>
+                    Today's Cases :{" "}
+                    <span
+                      style={{
+                        color: colors(data.todayCases),
+                        fontWeight: "bold"
+                      }}
+                    >
+                      {data.todayCases}
+                    </span>
+                  </Typography>
+                  <Typography variant={matchesMD ? "h6" : "h5"}>
+                    Today's Deaths :{" "}
+                    <span
+                      style={{
+                        color: colors(data.todayDeaths),
+                        fontWeight: "bold"
+                      }}
+                    >
+                      {data.todayDeaths}
+                    </span>
+                  </Typography>
+                </div>
+              );
+            })
+          )}
         </CardContent>
       </Card>
     </Grid>

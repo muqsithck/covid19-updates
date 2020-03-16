@@ -48,15 +48,24 @@ const WorldWideCases = props => {
             Cases WorldWide
           </Typography>
           <hr />
-          {Object.entries(globalData).map(([key, value]) => (
-            <Typography
-              style={{ color: " #C70039 ", fontWeight: "bold" }}
-              key={key}
-              variant={matchesMD ? "h6" : "h5"}
-            >
-              {key} : {value}
-            </Typography>
-          ))}
+          {Object.entries(globalData).map(([key, value]) => {
+            if (globalData.length === 0 && !globalData) {
+              return (
+                <Typography variant="h5">
+                  I guess we maxed out the request! Please! Try again later
+                </Typography>
+              );
+            }
+            return (
+              <Typography
+                style={{ color: " #C70039 ", fontWeight: "bold" }}
+                key={key}
+                variant={matchesMD ? "h6" : "h5"}
+              >
+                {key} : {value}
+              </Typography>
+            );
+          })}
         </CardContent>
       </Card>
     </Grid>
