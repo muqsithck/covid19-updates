@@ -54,13 +54,23 @@ const App = () => {
         <IndianCases />
         <Card>
           <CardContent>
-            <Typography variant="h4">
-              Made in ❤ with <br />
+            <Typography variant="h6">
+              Made in{" "}
+              <span role="img" aria-label="emoji">
+                ❤
+              </span>
+              with <br />
               <a href="https://reactjs.org/">React</a>
+              <br />
               &&
               <a href="https://material-ui.com/">Material UI</a>
             </Typography>
-            <Typography variant="h5">---Aditya</Typography>
+            <Typography variant="h6">
+              ---Aditya{" "}
+              <span role="img" aria-label="emoji">
+                👋😊
+              </span>
+            </Typography>
           </CardContent>
         </Card>
       </Grid>
