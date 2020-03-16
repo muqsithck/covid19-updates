@@ -53,13 +53,19 @@ const App = () => {
         <WorldWideCases />
         <IndianCases />
       </Grid>
-      <Grid container direction="column" justify="center" alignItems="center">
+      <Grid
+        container
+        direction="column"
+        justify="center"
+        alignItems="center"
+        style={{ marginTop: "3em", textAlign: "center" }}
+      >
         <Card>
           <CardContent>
             <Typography variant="h6">
               Made in{" "}
               <span role="img" aria-label="emoji">
-                ❤
+                ❤{" "}
               </span>
               with <br />
               <a
@@ -68,7 +74,7 @@ const App = () => {
               >
                 React
               </a>{" "}
-              &&
+              &&{" "}
               <a
                 style={{ textDecoration: "none", color: "marron" }}
                 href="https://material-ui.com/"
