@@ -88,7 +88,7 @@ const InputSearch = props => {
                 return (
                   <div key={i}>
                     <Typography variant="h5">
-                      Country :
+                      Country :{" "}
                       <span
                         className={classes.textColor}
                         style={{ fontWeight: "bold" }}
@@ -97,10 +97,18 @@ const InputSearch = props => {
                       </span>
                     </Typography>
                     <Typography variant="h5">
-                      Cases : {countryData.cases}
+                      Cases :{" "}
+                      <span
+                        style={{
+                          color: colors(countryData.cases),
+                          fontWeight: "bold"
+                        }}
+                      >
+                        {countryData.cases}
+                      </span>
                     </Typography>
                     <Typography variant="h5">
-                      Critical :
+                      Critical :{" "}
                       <span
                         style={{
                           color: colors(countryData.critical),
@@ -111,7 +119,7 @@ const InputSearch = props => {
                       </span>
                     </Typography>
                     <Typography variant="h5">
-                      Deaths :
+                      Deaths :{" "}
                       <span
                         style={{
                           color: colors(countryData.deaths),
@@ -122,7 +130,7 @@ const InputSearch = props => {
                       </span>
                     </Typography>
                     <Typography variant="h5">
-                      Recovered :
+                      Recovered :{" "}
                       <span
                         style={{
                           color: colors(countryData.recovered),
@@ -133,7 +141,7 @@ const InputSearch = props => {
                       </span>
                     </Typography>
                     <Typography variant="h5">
-                      Today's Cases :
+                      Today's Cases :{" "}
                       <span
                         style={{
                           color: colors(countryData.todayCases),
@@ -144,7 +152,7 @@ const InputSearch = props => {
                       </span>
                     </Typography>
                     <Typography variant="h5">
-                      Today's Death :
+                      Today's Death :{" "}
                       <span
                         style={{
                           color: colors(countryData.todayDeaths),
