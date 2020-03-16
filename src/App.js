@@ -6,6 +6,7 @@ import Typography from "@material-ui/core/Typography";
 import { useTheme } from "@material-ui/core/styles";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 
+import InputSearch from "./components/InputSearch";
 import WorldWideCases from "./components/WorldWideCases";
 import IndianCases from "./components/IndianCases";
 
@@ -31,6 +32,15 @@ const App = () => {
               </Typography>
             </CardContent>
           </Card>
+        </Grid>
+        <Grid
+          item
+          style={{
+            marginBottom: matchesMD ? "2em" : "5em",
+            marginTop: "2em"
+          }}
+        >
+          <InputSearch />
         </Grid>
       </Grid>
       <Grid

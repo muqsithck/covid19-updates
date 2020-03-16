@@ -29,12 +29,25 @@ const IndianCases = props => {
         headers: { "Access-Control-Allow-Origin": "*" }
       })
       .then(res => {
-        console.log(res);
         let dataOfIndia = res.data.filter(d => d.country === "India");
         setIndianData(dataOfIndia);
       })
       .catch(err => console.log(err));
   }, []);
+
+  function colors(data) {
+    // eslint-disable-next-line no-unused-vars
+    let subjectColor = "";
+    if (data <= 30) {
+      return (subjectColor = "#58d68d");
+    } else if (data > 30 && data < 80) {
+      return (subjectColor = "#FFC300");
+    } else if (data > 80 && data < 130) {
+      return (subjectColor = "#FF5733");
+    } else {
+      return (subjectColor = "#C70039");
+    }
+  }
   return (
     <Grid item>
       <Card>
@@ -51,37 +64,58 @@ const IndianCases = props => {
               <div key={i}>
                 <Typography variant={matchesMD ? "h6" : "h5"}>
                   Total cases in India :{" "}
-                  <span style={{ color: " #FFC300 ", fontWeight: "bold" }}>
+                  <span
+                    style={{ color: colors(data.cases), fontWeight: "bold" }}
+                  >
                     {data.cases}
                   </span>
                 </Typography>
                 <Typography variant={matchesMD ? "h6" : "h5"}>
                   Critical :{" "}
-                  <span style={{ color: " #58d68d ", fontWeight: "bold" }}>
+                  <span
+                    style={{ color: colors(data.critical), fontWeight: "bold" }}
+                  >
                     {data.critical}
                   </span>
                 </Typography>
                 <Typography variant={matchesMD ? "h6" : "h5"}>
                   Deaths :{" "}
-                  <span style={{ color: " #C70039 ", fontWeight: "bold" }}>
+                  <span
+                    style={{ color: colors(data.deaths), fontWeight: "bold" }}
+                  >
                     {data.deaths}
                   </span>
                 </Typography>
                 <Typography variant={matchesMD ? "h6" : "h5"}>
                   Recovered :{" "}
-                  <span style={{ color: " #58d68d ", fontWeight: "bold" }}>
+                  <span
+                    style={{
+                      color: colors(data.recovered),
+                      fontWeight: "bold"
+                    }}
+                  >
                     {data.recovered}
                   </span>
                 </Typography>
                 <Typography variant={matchesMD ? "h6" : "h5"}>
                   Today's Cases :{" "}
-                  <span style={{ color: "  #FF5733 ", fontWeight: "bold" }}>
+                  <span
+                    style={{
+                      color: colors(data.todayCases),
+                      fontWeight: "bold"
+                    }}
+                  >
                     {data.todayCases}
                   </span>
                 </Typography>
                 <Typography variant={matchesMD ? "h6" : "h5"}>
                   Today's Deaths :{" "}
-                  <span style={{ color: " #C70039 ", fontWeight: "bold" }}>
+                  <span
+                    style={{
+                      color: colors(data.todayDeaths),
+                      fontWeight: "bold"
+                    }}
+                  >
                     {data.todayDeaths}
                   </span>
                 </Typography>
