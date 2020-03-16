@@ -52,6 +52,17 @@ const App = () => {
       >
         <WorldWideCases />
         <IndianCases />
+        <Card>
+          <CardContent>
+            <Typography variant="h4">
+              Made in ❤ with <br />
+              <a href="https://reactjs.org/">React</a>
+              &&
+              <a href="https://material-ui.com/">Material UI</a>
+            </Typography>
+            <Typography variant="h5">---Aditya</Typography>
+          </CardContent>
+        </Card>
       </Grid>
     </>
   );
