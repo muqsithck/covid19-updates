@@ -52,6 +52,8 @@ const App = () => {
       >
         <WorldWideCases />
         <IndianCases />
+      </Grid>
+      <Grid container direction="column" justify="center" alignItems="center">
         <Card>
           <CardContent>
             <Typography variant="h6">
