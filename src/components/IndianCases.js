@@ -27,7 +27,10 @@ const IndianCases = props => {
     const fetchUserLocationData = async () => {
       let url = process.env.REACT_APP_PROD_API_URL;
       const responseFromUserLocationData = await axios(
-        "http://ip-api.com/json"
+        "https://ip-api.com/json",
+        {
+          headers: { "Access-Control-Allow-Origin": "*" }
+        }
       );
       setCountryIn(responseFromUserLocationData.data.country);
       const responseFromCorona = await axios(`${url}countries`);
