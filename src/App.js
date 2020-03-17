@@ -8,7 +8,7 @@ import useMediaQuery from "@material-ui/core/useMediaQuery";
 
 import InputSearch from "./components/InputSearch";
 import WorldWideCases from "./components/WorldWideCases";
-import IndianCases from "./components/IndianCases";
+import UserCountryCases from "./components/UserCountryCases";
 
 const App = () => {
   const theme = useTheme();
@@ -51,7 +51,7 @@ const App = () => {
         spacing={3}
       >
         <WorldWideCases />
-        <IndianCases />
+        <UserCountryCases />
       </Grid>
       <Grid
         container

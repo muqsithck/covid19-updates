@@ -16,7 +16,7 @@ const useStyles = makeStyles(theme => ({
     color: " #581845"
   }
 }));
-const IndianCases = props => {
+const UserCountryCases = props => {
   const theme = useTheme();
   const matchesMD = useMediaQuery(theme.breakpoints.down("md"));
   const classes = useStyles();
@@ -81,7 +81,7 @@ const IndianCases = props => {
               return (
                 <div key={i}>
                   <Typography variant={matchesMD ? "h6" : "h5"}>
-                    Total cases in India :{" "}
+                    Cases :{" "}
                     <span
                       style={{ color: colors(data.cases), fontWeight: "bold" }}
                     >
@@ -150,4 +150,4 @@ const IndianCases = props => {
   );
 };
 
-export default IndianCases;
+export default UserCountryCases;
