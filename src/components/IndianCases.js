@@ -20,20 +20,28 @@ const IndianCases = props => {
   const theme = useTheme();
   const matchesMD = useMediaQuery(theme.breakpoints.down("md"));
   const classes = useStyles();
-  const [indianData, setIndianData] = useState([]);
+  const [countryData, setCountryData] = useState([]);
+  const [countryIn, setCountryIn] = useState("");
 
   useEffect(() => {
+    axios
+      .get("https://extreme-ip-lookup.com/json/")
+      .then(res => {
+        setCountryIn(res.data.country);
+      })
+      .then(err => console.log(err));
+
     let url = process.env.REACT_APP_PROD_API_URL;
     axios
       .get(`${url}countries`, {
         headers: { "Access-Control-Allow-Origin": "*" }
       })
       .then(res => {
-        let dataOfIndia = res.data.filter(d => d.country === "India");
-        setIndianData(dataOfIndia);
+        let dataOfIndia = res.data.filter(d => d.country === countryIn);
+        setCountryData(dataOfIndia);
       })
       .catch(err => console.log(err));
-  }, []);
+  }, [countryIn]);
 
   function colors(data) {
     // eslint-disable-next-line no-unused-vars
@@ -59,13 +67,13 @@ const IndianCases = props => {
             className={classes.textColor}
             variant={matchesMD ? "h5" : "h3"}
           >
-            Cases in India
+            Cases in {countryIn}
           </Typography>
           <hr />
-          {!indianData || indianData.length === 0 ? (
+          {!countryData || countryData.length === 0 ? (
             <Typography variant="h6">Loading...</Typography>
           ) : (
-            indianData.map((data, i) => {
+            countryData.map((data, i) => {
               return (
                 <div key={i}>
                   <Typography variant={matchesMD ? "h6" : "h5"}>
