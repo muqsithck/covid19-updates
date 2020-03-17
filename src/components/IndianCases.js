@@ -25,12 +25,15 @@ const IndianCases = props => {
 
   useEffect(() => {
     axios
-      .get("https://extreme-ip-lookup.com/json/")
-      .then(res => {
-        console.log(res.data.country);
-        setCountryIn(res.data.country);
+      .get("https://extreme-ip-lookup.com/json/", {
+        headers: { "Access-Control-Allow-Origin": "*" }
       })
-      .catch(err => console.log(err));
+      .then(res => {
+        if (res.status === 200) {
+          setCountryIn(res.data.country);
+        }
+      })
+      .catch(err => console.log("Request Failed" + err));
 
     let url = process.env.REACT_APP_PROD_API_URL;
     axios
@@ -41,7 +44,7 @@ const IndianCases = props => {
         let dataOfIndia = res.data.filter(d => d.country === countryIn);
         setCountryData(dataOfIndia);
       })
-      .catch(err => console.log(err));
+      .catch(err => console.log("Request Failed" + err));
   }, [countryIn]);
 
   function colors(data) {
