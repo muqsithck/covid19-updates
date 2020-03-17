@@ -50,8 +50,11 @@ const IndianCases = props => {
   }
   return (
     <Grid item>
-      <Card>
-        <CardContent className={classes.cardContents}>
+      <Card
+        className={classes.cardContents}
+        style={{ minWidth: "20em", minHeight: "20em" }}
+      >
+        <CardContent>
           <Typography
             className={classes.textColor}
             variant={matchesMD ? "h5" : "h3"}

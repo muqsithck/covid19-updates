@@ -58,26 +58,26 @@ const App = () => {
         direction="column"
         justify="center"
         alignItems="center"
-        style={{ marginTop: "3em", textAlign: "center" }}
+        style={{ marginTop: "3em", textAlign: "center", marginBottom: "2em" }}
       >
         <p>{process.env.REACT_APP_BASE_URL}</p>
         <Card>
           <CardContent>
-            <Typography variant="h6">
+            <Typography variant="h6" style={{ color: "red" }}>
               Made in{" "}
               <span role="img" aria-label="emoji">
                 ❤{" "}
               </span>
               with <br />
               <a
-                style={{ textDecoration: "none", color: "marron" }}
+                style={{ textDecoration: "none", color: "#61DAFB" }}
                 href="https://reactjs.org/"
               >
                 React
               </a>{" "}
               &&{" "}
               <a
-                style={{ textDecoration: "none", color: "marron" }}
+                style={{ textDecoration: "none", color: "#1976d2" }}
                 href="https://material-ui.com/"
               >
                 Material UI
