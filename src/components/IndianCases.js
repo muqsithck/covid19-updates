@@ -25,9 +25,9 @@ const IndianCases = props => {
 
   useEffect(() => {
     axios
-      .get("https://extreme-ip-lookup.com/json/")
+      .get("http://ip-api.com/json")
       .then(res => {
-        console.log(res.data.country);
+        // console.log(res.data.country);
         setCountryIn(res.data.country);
       })
       .catch(err => console.log(err));
