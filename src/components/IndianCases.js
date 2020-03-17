@@ -28,6 +28,7 @@ const IndianCases = props => {
       let url = process.env.REACT_APP_PROD_API_URL;
       const responseFromUserLocationData = await axios("https://geoip-db.com", {
         headers: {
+          "Content-Type": "application/json",
           "Access-Control-Allow-Origin": "*",
           "content-type": "application/x-www-form-urlencoded"
         }
