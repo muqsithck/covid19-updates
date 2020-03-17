@@ -27,9 +27,10 @@ const IndianCases = props => {
     axios
       .get("https://extreme-ip-lookup.com/json/")
       .then(res => {
+        console.log(res.data.country);
         setCountryIn(res.data.country);
       })
-      .then(err => console.log(err));
+      .catch(err => console.log(err));
 
     let url = process.env.REACT_APP_PROD_API_URL;
     axios
