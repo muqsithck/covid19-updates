@@ -26,15 +26,10 @@ const IndianCases = props => {
   useEffect(() => {
     const fetchUserLocationData = async () => {
       let url = process.env.REACT_APP_PROD_API_URL;
-      const responseFromUserLocationData = await axios("https://geoip-db.com", {
-        headers: {
-          "Content-Type": "application/json",
-          "Access-Control-Allow-Origin": "*",
-          "content-type": "application/x-www-form-urlencoded"
-        }
-      });
-      console.log(responseFromUserLocationData);
-      setCountryIn(responseFromUserLocationData.data.country);
+      let countryUrl = process.env.REACT_APP_PROD_API_URL_USER_COUNTRY;
+      let key = process.env.REACT_APP_SECRET_KEY;
+      const responseFromUserLocationData = await axios(`${countryUrl}${key}`);
+      setCountryIn(responseFromUserLocationData.data.country_name);
       const responseFromCorona = await axios(`${url}countries`);
       const userLocationResult = responseFromCorona.data.map(data => data);
       setCountryData(
