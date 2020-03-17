@@ -37,12 +37,11 @@ const IndianCases = props => {
         setCountryData(
           userLocationResult.filter(data => data.country === countryIn)
         );
-      } else if (countryIn.includes("United States")) {
-        const responseFromCorona = await axios(`${url}countries`);
-        const userLocationResult = responseFromCorona.data.map(data => data);
-        setCountryData(
-          userLocationResult.filter(data => data.country === "USA")
-        );
+        if (countryIn.includes("United States")) {
+          setCountryData(
+            userLocationResult.filter(data => data.country === "USA")
+          );
+        }
       }
     };
     fetchUserLocationData();
