@@ -27,7 +27,10 @@ const IndianCases = props => {
     const fetchUserLocationData = async () => {
       let url = process.env.REACT_APP_PROD_API_URL;
       const responseFromUserLocationData = await axios("https://geoip-db.com", {
-        headers: { "Access-Control-Allow-Origin": "*" }
+        headers: {
+          "Access-Control-Allow-Origin": "*",
+          "content-type": "application/x-www-form-urlencoded"
+        }
       });
       console.log(responseFromUserLocationData);
       setCountryIn(responseFromUserLocationData.data.country);
