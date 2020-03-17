@@ -30,11 +30,20 @@ const IndianCases = props => {
       let key = process.env.REACT_APP_SECRET_KEY;
       const responseFromUserLocationData = await axios(`${countryUrl}${key}`);
       setCountryIn(responseFromUserLocationData.data.country_name);
-      const responseFromCorona = await axios(`${url}countries`);
-      const userLocationResult = responseFromCorona.data.map(data => data);
-      setCountryData(
-        userLocationResult.filter(data => data.country === countryIn)
-      );
+
+      if (countryIn.length > 2) {
+        const responseFromCorona = await axios(`${url}countries`);
+        const userLocationResult = responseFromCorona.data.map(data => data);
+        setCountryData(
+          userLocationResult.filter(data => data.country === countryIn)
+        );
+      } else if (countryIn.includes("United States")) {
+        const responseFromCorona = await axios(`${url}countries`);
+        const userLocationResult = responseFromCorona.data.map(data => data);
+        setCountryData(
+          userLocationResult.filter(data => data.country === "USA")
+        );
+      }
     };
     fetchUserLocationData();
   }, [countryIn]);
