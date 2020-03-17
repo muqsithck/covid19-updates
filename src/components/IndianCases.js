@@ -25,9 +25,7 @@ const IndianCases = props => {
 
   useEffect(() => {
     axios
-      .get("https://extreme-ip-lookup.com/json/", {
-        headers: { "Access-Control-Allow-Origin": "*" }
-      })
+      .get("https://extreme-ip-lookup.com/json/")
       .then(res => {
         if (res.status === 200) {
           setCountryIn(res.data.country);
