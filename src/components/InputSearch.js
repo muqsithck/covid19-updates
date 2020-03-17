@@ -28,7 +28,9 @@ const InputSearch = props => {
   const handleChange = e => {
     let value = e.target.value;
     const userSearchResult = value.charAt(0).toUpperCase() + value.slice(1);
-    setCountryName(userSearchResult);
+    if (userSearchResult && userSearchResult.length >= 3) {
+      setCountryName(userSearchResult);
+    }
   };
   useEffect(() => {
     let url = process.env.REACT_APP_PROD_API_URL;
@@ -38,16 +40,11 @@ const InputSearch = props => {
       })
       .then(res => {
         if (res.status === 200) {
-          let searchResult = res.data.filter(
-            countryCoronaResult =>
-              countryCoronaResult.country.substring(0, 4) ===
-              countryName.substring(0, 4)
-          );
-          setCountries([...searchResult]);
+          setCountries([...res.data]);
         }
       })
       .then(err => console.log(err));
-  }, [countryName]);
+  }, []);
 
   function colors(data) {
     // eslint-disable-next-line no-unused-vars
@@ -66,112 +63,112 @@ const InputSearch = props => {
     <>
       <Card>
         <CardContent className={classes.cardContents}>
-          <Input
-            type="text"
-            color="secondary"
-            onChange={e => handleChange(e)}
-            placeholder="Search Country wise"
-            style={{
-              width: matchesMD ? "20em" : "30em",
-              height: matchesMD ? "2em" : "3em",
-              textAlign: "center",
-              fontSize: matchesMD ? "1em" : "1.5em",
-              fontWeight: "bold"
-            }}
-            className={classes.textColor}
-          />
+          <form>
+            <Input
+              type="text"
+              color="secondary"
+              onChange={e => handleChange(e)}
+              placeholder="Search Country wise"
+              style={{
+                width: matchesMD ? "20em" : "25em",
+                height: matchesMD ? "2em" : "2.5em",
+                textAlign: "center",
+                fontSize: matchesMD ? "1em" : "1.5em",
+                fontWeight: "bold"
+              }}
+              className={classes.textColor}
+            />
+          </form>
         </CardContent>
       </Card>
       <Grid item>
-        {countriesData.length > 0 && (
-          <Card>
-            <CardContent className={classes.cardContents}>
-              {countriesData.map((countryData, i) => {
-                return (
-                  <div key={i}>
-                    <Typography variant="h5">
-                      Country :{" "}
-                      <span
-                        className={classes.textColor}
-                        style={{ fontWeight: "bold" }}
-                      >
-                        {countryData.country}
-                      </span>
-                    </Typography>
-                    <Typography variant="h5">
-                      Cases :{" "}
-                      <span
-                        style={{
-                          color: colors(countryData.cases),
-                          fontWeight: "bold"
-                        }}
-                      >
-                        {countryData.cases}
-                      </span>
-                    </Typography>
-                    <Typography variant="h5">
-                      Critical :{" "}
-                      <span
-                        style={{
-                          color: colors(countryData.critical),
-                          fontWeight: "bold"
-                        }}
-                      >
-                        {countryData.critical}
-                      </span>
-                    </Typography>
-                    <Typography variant="h5">
-                      Deaths :{" "}
-                      <span
-                        style={{
-                          color: colors(countryData.deaths),
-                          fontWeight: "bold"
-                        }}
-                      >
-                        {countryData.deaths}
-                      </span>
-                    </Typography>
-                    <Typography variant="h5">
-                      Recovered :{" "}
-                      <span
-                        style={{
-                          color: colors(countryData.recovered),
-                          fontWeight: "bold"
-                        }}
-                      >
-                        {countryData.recovered}
-                      </span>
-                    </Typography>
-                    <Typography variant="h5">
-                      Today's Cases :{" "}
-                      <span
-                        style={{
-                          color: colors(countryData.todayCases),
-                          fontWeight: "bold"
-                        }}
-                      >
-                        {countryData.todayCases}
-                      </span>
-                    </Typography>
-                    <Typography variant="h5">
-                      Today's Death :{" "}
-                      <span
-                        style={{
-                          color: colors(countryData.todayDeaths),
-                          fontWeight: "bold"
-                        }}
-                      >
-                        {countryData.todayDeaths}
-                      </span>
-                    </Typography>
-                    <br />
-                    <hr />
-                  </div>
-                );
-              })}
-            </CardContent>
-          </Card>
-        )}
+        {countriesData.map((countryData, i) => {
+          return countryData.country === countryName ? (
+            <Card className={classes.cardContents}>
+              <CardContent>
+                <div key={i}>
+                  <Typography variant="h5">
+                    Country :{" "}
+                    <span
+                      className={classes.textColor}
+                      style={{ fontWeight: "bold" }}
+                    >
+                      {countryData.country}
+                    </span>
+                  </Typography>
+                  <Typography variant="h5">
+                    Cases :{" "}
+                    <span
+                      style={{
+                        color: colors(countryData.cases),
+                        fontWeight: "bold"
+                      }}
+                    >
+                      {countryData.cases}
+                    </span>
+                  </Typography>
+                  <Typography variant="h5">
+                    Critical :{" "}
+                    <span
+                      style={{
+                        color: colors(countryData.critical),
+                        fontWeight: "bold"
+                      }}
+                    >
+                      {countryData.critical}
+                    </span>
+                  </Typography>
+                  <Typography variant="h5">
+                    Deaths :{" "}
+                    <span
+                      style={{
+                        color: colors(countryData.deaths),
+                        fontWeight: "bold"
+                      }}
+                    >
+                      {countryData.deaths}
+                    </span>
+                  </Typography>
+                  <Typography variant="h5">
+                    Recovered :{" "}
+                    <span
+                      style={{
+                        color: colors(countryData.recovered),
+                        fontWeight: "bold"
+                      }}
+                    >
+                      {countryData.recovered}
+                    </span>
+                  </Typography>
+                  <Typography variant="h5">
+                    Today's Cases :{" "}
+                    <span
+                      style={{
+                        color: colors(countryData.todayCases),
+                        fontWeight: "bold"
+                      }}
+                    >
+                      {countryData.todayCases}
+                    </span>
+                  </Typography>
+                  <Typography variant="h5">
+                    Today's Death :{" "}
+                    <span
+                      style={{
+                        color: colors(countryData.todayDeaths),
+                        fontWeight: "bold"
+                      }}
+                    >
+                      {countryData.todayDeaths}
+                    </span>
+                  </Typography>
+                  <br />
+                  <hr />
+                </div>
+              </CardContent>
+            </Card>
+          ) : null;
+        })}
       </Grid>
     </>
   );
