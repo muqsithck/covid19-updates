@@ -3,10 +3,11 @@ import Grid from "@material-ui/core/Grid";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import axios from "axios";
-import Input from "@material-ui/core/Input";
+import TextField from "@material-ui/core/TextField";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import { Typography } from "@material-ui/core";
+import AutoComplete from "@material-ui/lab/AutoComplete";
 
 const useStyles = makeStyles(theme => ({
   cardContents: {
@@ -15,6 +16,12 @@ const useStyles = makeStyles(theme => ({
   },
   textColor: {
     color: " #581845"
+  },
+  autoContainer: {
+    height: "4.6em",
+    backgroundColor: "#eee",
+    alignItems: "center",
+    textAlign: "center"
   }
 }));
 
@@ -22,16 +29,8 @@ const InputSearch = props => {
   const classes = useStyles();
   const theme = useTheme();
   const matchesMD = useMediaQuery(theme.breakpoints.down("md"));
-  const [countryName, setCountryName] = useState("");
   const [countriesData, setCountries] = useState([]);
 
-  const handleChange = e => {
-    let value = e.target.value;
-    const userSearchResult = value.charAt(0).toUpperCase() + value.slice(1);
-    if (userSearchResult && userSearchResult.length >= 3) {
-      setCountryName(userSearchResult);
-    }
-  };
   useEffect(() => {
     let url = process.env.REACT_APP_PROD_API_URL;
     axios
@@ -60,117 +59,107 @@ const InputSearch = props => {
     }
   }
   return (
-    <>
-      <Card>
-        <CardContent className={classes.cardContents}>
-          <form>
-            <Input
-              type="text"
-              color="secondary"
-              onChange={e => handleChange(e)}
-              placeholder="Search Country wise"
-              style={{
-                width: matchesMD ? "20em" : "25em",
-                height: matchesMD ? "2em" : "2.5em",
-                textAlign: "center",
-                fontSize: matchesMD ? "1em" : "1.5em",
-                fontWeight: "bold"
-              }}
-              className={classes.textColor}
-            />
-          </form>
-        </CardContent>
-      </Card>
-      <Grid item>
-        {countriesData.map((countryData, i) => {
-          return countryData.country === countryName ? (
-            <Card className={classes.cardContents}>
-              <CardContent>
-                <div key={i}>
-                  <Typography variant="h5">
-                    Country :{" "}
-                    <span
-                      className={classes.textColor}
-                      style={{ fontWeight: "bold" }}
-                    >
-                      {countryData.country}
-                    </span>
-                  </Typography>
-                  <Typography variant="h5">
-                    Cases :{" "}
-                    <span
-                      style={{
-                        color: colors(countryData.cases),
-                        fontWeight: "bold"
-                      }}
-                    >
-                      {countryData.cases}
-                    </span>
-                  </Typography>
-                  <Typography variant="h5">
-                    Critical :{" "}
-                    <span
-                      style={{
-                        color: colors(countryData.critical),
-                        fontWeight: "bold"
-                      }}
-                    >
-                      {countryData.critical}
-                    </span>
-                  </Typography>
-                  <Typography variant="h5">
-                    Deaths :{" "}
-                    <span
-                      style={{
-                        color: colors(countryData.deaths),
-                        fontWeight: "bold"
-                      }}
-                    >
-                      {countryData.deaths}
-                    </span>
-                  </Typography>
-                  <Typography variant="h5">
-                    Recovered :{" "}
-                    <span
-                      style={{
-                        color: colors(countryData.recovered),
-                        fontWeight: "bold"
-                      }}
-                    >
-                      {countryData.recovered}
-                    </span>
-                  </Typography>
-                  <Typography variant="h5">
-                    Today's Cases :{" "}
-                    <span
-                      style={{
-                        color: colors(countryData.todayCases),
-                        fontWeight: "bold"
-                      }}
-                    >
-                      {countryData.todayCases}
-                    </span>
-                  </Typography>
-                  <Typography variant="h5">
-                    Today's Death :{" "}
-                    <span
-                      style={{
-                        color: colors(countryData.todayDeaths),
-                        fontWeight: "bold"
-                      }}
-                    >
-                      {countryData.todayDeaths}
-                    </span>
-                  </Typography>
-                  <br />
-                  <hr />
-                </div>
-              </CardContent>
-            </Card>
-          ) : null;
-        })}
-      </Grid>
-    </>
+    <Grid item className={classes.autoContainer}>
+      <AutoComplete
+        id="corona-infected-countries-list"
+        options={countriesData}
+        getOptionLabel={countryData => countryData.country}
+        style={{
+          width: matchesMD ? "25em" : "30em",
+          backgroundColor: "#fff",
+          paddingTop: "0.5em"
+        }}
+        renderOption={countryData => (
+          <Card className={classes.cardContents}>
+            <CardContent>
+              <Typography variant="h5">
+                Country :{" "}
+                <span
+                  className={classes.textColor}
+                  style={{ fontWeight: "bold" }}
+                >
+                  {countryData.country}
+                </span>
+              </Typography>
+              <Typography variant="h5">
+                Cases :{" "}
+                <span
+                  style={{
+                    color: colors(countryData.cases),
+                    fontWeight: "bold"
+                  }}
+                >
+                  {countryData.cases}
+                </span>
+              </Typography>
+              <Typography variant="h5">
+                Critical :{" "}
+                <span
+                  style={{
+                    color: colors(countryData.critical),
+                    fontWeight: "bold"
+                  }}
+                >
+                  {countryData.critical}
+                </span>
+              </Typography>
+              <Typography variant="h5">
+                Deaths :{" "}
+                <span
+                  style={{
+                    color: colors(countryData.deaths),
+                    fontWeight: "bold"
+                  }}
+                >
+                  {countryData.deaths}
+                </span>
+              </Typography>
+              <Typography variant="h5">
+                Recovered :{" "}
+                <span
+                  style={{
+                    color: colors(countryData.recovered),
+                    fontWeight: "bold"
+                  }}
+                >
+                  {countryData.recovered}
+                </span>
+              </Typography>
+              <Typography variant="h5">
+                Today's Cases :{" "}
+                <span
+                  style={{
+                    color: colors(countryData.todayCases),
+                    fontWeight: "bold"
+                  }}
+                >
+                  {countryData.todayCases}
+                </span>
+              </Typography>
+              <Typography variant="h5">
+                Today's Death :{" "}
+                <span
+                  style={{
+                    color: colors(countryData.todayDeaths),
+                    fontWeight: "bold"
+                  }}
+                >
+                  {countryData.todayDeaths}
+                </span>
+              </Typography>
+              <br />
+            </CardContent>
+          </Card>
+        )}
+        renderInput={params => (
+          <TextField
+            {...params}
+            label="Choose your Country"
+            variant="outlined"
+          />
+        )}
+      />
+    </Grid>
   );
 };
 
