@@ -7,7 +7,7 @@ import TextField from "@material-ui/core/TextField";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import { Typography } from "@material-ui/core";
-import AutoComplete from "@material-ui/lab/AutoComplete";
+import Autocomplete from "@material-ui/lab/Autocomplete";
 
 const useStyles = makeStyles(theme => ({
   cardContents: {
@@ -60,14 +60,15 @@ const InputSearch = props => {
   }
   return (
     <Grid item className={classes.autoContainer}>
-      <AutoComplete
+      <Autocomplete
         id="corona-infected-countries-list"
         options={countriesData}
         getOptionLabel={countryData => countryData.country}
         style={{
           width: matchesMD ? "25em" : "30em",
           backgroundColor: "#fff",
-          paddingTop: "0.5em"
+          paddingTop: "0.5em",
+          paddingBottom: "0"
         }}
         renderOption={countryData => (
           <Card className={classes.cardContents}>
@@ -154,7 +155,7 @@ const InputSearch = props => {
         renderInput={params => (
           <TextField
             {...params}
-            label="Choose your Country"
+            label="Choose the Country you wanna check"
             variant="outlined"
           />
         )}
