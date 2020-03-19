@@ -19,6 +19,11 @@ const useStyles = makeStyles(theme => ({
   },
   autoContainer: {
     height: "4.6em",
+    [theme.breakpoints.down("md")]: {
+      height: "4em",
+      marginLeft: "0.5em",
+      marginRight: "0.5em"
+    },
     backgroundColor: "#eee",
     alignItems: "center",
     textAlign: "center"
@@ -65,10 +70,10 @@ const InputSearch = props => {
         options={countriesData}
         getOptionLabel={countryData => countryData.country}
         style={{
-          width: matchesMD ? "25em" : "30em",
+          width: matchesMD ? "20em" : "30em",
           backgroundColor: "#fff",
-          paddingTop: "0.5em",
-          paddingBottom: "0"
+          paddingTop: matchesMD ? "0.3" : "0.5em",
+          paddingBottom: matchesMD ? "0.8em" : "0"
         }}
         renderOption={countryData => (
           <Card className={classes.cardContents}>
