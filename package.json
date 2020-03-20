@@ -1,7 +1,8 @@
 {
-  "name": "corona-cases",
+  "name": "covid19-updates",
   "version": "0.1.0",
   "private": true,
+  "homepage": "http://muqsithck.github.io/covid19-updates",
   "dependencies": {
     "@material-ui/core": "^4.9.5",
     "@material-ui/lab": "^4.0.0-alpha.46",
@@ -17,7 +18,10 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "start-sw": "http-server ./build",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -33,5 +37,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "gh-pages": "^2.2.0",
+    "http-server": "^0.12.1"
   }
 }
