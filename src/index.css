@@ -4,10 +4,27 @@ body {
   padding: 0;
   box-sizing: border-box;
 }
+
+a{
+  text-decoration: none;
+  color: #3498db;
+}
+
 body {
   font-family: "Roboto";
   background-color: #000;
   color: #fff;
+}
+
+.loading-screen{
+  min-height: 500px;
+  height: 95vh;
+  width: 100%;
+  background-color: #000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
 }
 
 .app-wrapper {
@@ -27,7 +44,7 @@ body {
 .app-container{
 min-height: 1000px}
 
-.heading {
+.heading-one {
   color: #fff;
   margin: 0px;
   font-size: 40px;
@@ -36,7 +53,7 @@ min-height: 1000px}
   font-family: "Roboto";
 }
 
-.heading-main {
+.heading-two {
   color: #fff;
   margin: 0px;
   font-size: 70px;
@@ -53,14 +70,7 @@ min-height: 1000px}
   padding: 2px;
 }
 
-.item-count-text {
-  color: #fff;
-  margin: 0px;
-  font-size: 20px;
-  font-weight: 500;
-  font-family: "Roboto";
-}
-.item-count-heading {
+.titile {
   color: #fff;
   margin: 0px;
   font-size: 16px;
@@ -68,13 +78,33 @@ min-height: 1000px}
   font-family: "Roboto";
 }
 
-.item-count {
+.title-large {
+  margin: 0px;
+  font-size: 26px;
+  font-weight: 400;
+  font-family: "Roboto";
+}
+.caption {
+  color: #fff;
+  margin: 0px;
+  font-size: 15px;
+  font-weight: 500;
+  font-family: "Roboto";
+}
+
+.country-data-item {
   background-color: #2980b9;
   height: 30px;
   width: 80px;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+.world-data-item {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  padding: 10px 15px;
 }
 
 .input-box{
@@ -96,6 +126,23 @@ input:focus {
   outline: none !important;
 }
 
+.footer{
+  height: 200px;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  
+}
+ 
+.footer-text
+{
+  text-align: center;
+  font-size: 14px;
+  line-height: 14px;
+  font-weight: 400;
+  font-family: "Roboto";
+}
+
 .text-hide{
   display: none
 }
@@ -110,12 +157,12 @@ input:focus {
     display: block
   }
 
-  .heading {
+  .heading-one {
     font-size: 25px;
     line-height: 25px;
     font-weight: 900;
   }
-  .heading-main {
+  .heading-two {
     font-size: 40px;
     line-height: 40px;
     font-weight: 900;
@@ -127,20 +174,35 @@ input:focus {
     font-weight: 300;
     font-family: "Roboto";
     /* padding-left: 15px; */
+  margin-top: 0px;
+
   }
 
 
   
-.item-count-text {
+.titile {
   font-size: 13px;
   font-weight: 500;
 }
 
-.item-count-heading {
+.caption {
   font-size: 9px;
   font-weight: 500;
   font-family: "Roboto";
 }
 
-  
+
+.world-data-item {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  padding: 10px 0px;
+  padding-top: 20px;
+}
+
+
+.title-large {
+  font-size: 20px;
+}
+
 }
