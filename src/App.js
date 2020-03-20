@@ -1,99 +1,110 @@
-import React from "react";
-import Grid from "@material-ui/core/Grid";
-import Card from "@material-ui/core/Card";
-import CardContent from "@material-ui/core/CardContent";
-import Typography from "@material-ui/core/Typography";
-import { useTheme } from "@material-ui/core/styles";
-import useMediaQuery from "@material-ui/core/useMediaQuery";
+import React, { useEffect, useState } from "react";
+import { Grid, Container } from "@material-ui/core";
+import axios from "axios";
+import "./index.css";
 
-import InputSearch from "./components/InputSearch";
-import WorldWideCases from "./components/WorldWideCases";
-import UserCountryCases from "./components/UserCountryCases";
+export default function App() {
+     
+  const [coronaData, setCoronaData ] = useState([])
 
-const App = () => {
-  const theme = useTheme();
-  const matchesMD = useMediaQuery(theme.breakpoints.down("md"));
+  useEffect(
+    () => {       
+    axios.get("https://corona.lmao.ninja/countries").then(
+      res => {
+        // console.log(res)
+        setCoronaData([...res.data])
+      }
+    )
+    }, []
+  )
+    
+  console.log("data", coronaData[0])
+
   return (
-    <>
-      <Grid container direction="column" justify="center" alignItems="center">
-        <Grid
-          item
-          style={{ marginBottom: matchesMD ? "2em" : "5em", marginTop: "2em" }}
-        >
-          <Card>
-            <CardContent
-              style={{ backgroundColor: " rgba(255, 0, 0, 0.9)", opacity: 1 }}
-            >
-              <Typography
-                style={{ color: "#eee" }}
-                variant={matchesMD ? "h4" : "h2"}
-              >
-                Corona Virus Cases
-              </Typography>
-            </CardContent>
-          </Card>
+    <Container maxWidth="lg" style={{ padding: "50px" }}>
+      <Grid container>
+        <Grid item md={4}>
+          <h1 className="heading">COVID19 </h1>
+          <h1 className="heading-main"> UPDATE </h1>
         </Grid>
-        <Grid
-          item
-          style={{
-            marginBottom: matchesMD ? "2em" : "5em",
-            marginTop: "2em"
-          }}
-        >
-          <InputSearch />
-        </Grid>
-      </Grid>
-      <Grid
-        container
-        direction={matchesMD ? "column" : "row"}
-        justify="center"
-        alignItems="center"
-        spacing={3}
-      >
-        <WorldWideCases />
-        <UserCountryCases />
-      </Grid>
-      <Grid
-        container
-        direction="column"
-        justify="center"
-        alignItems="center"
-        style={{ marginTop: "3em", textAlign: "center", marginBottom: "2em" }}
-      >
-        <p>{process.env.REACT_APP_BASE_URL}</p>
-        <Card>
-          <CardContent>
-            <Typography variant="h6" style={{ color: "red" }}>
-              Made in{" "}
-              <span role="img" aria-label="emoji">
-                ❤{" "}
-              </span>
-              with <br />
-              <a
-                style={{ textDecoration: "none", color: "#61DAFB" }}
-                href="https://reactjs.org/"
-              >
-                React
-              </a>{" "}
-              &&{" "}
-              <a
-                style={{ textDecoration: "none", color: "#1976d2" }}
-                href="https://material-ui.com/"
-              >
-                Material UI
-              </a>
-            </Typography>
-            <Typography variant="h6">
-              ---Aditya{" "}
-              <span role="img" aria-label="emoji">
-                👋😊
-              </span>
-            </Typography>
-          </CardContent>
-        </Card>
-      </Grid>
-    </>
-  );
-};
+        <Grid item md={8}></Grid>
 
-export default App;
+        <Grid item md={12}>
+          <Grid container>
+          <Grid item md={4} className="flex-start">
+          <p className="item-count-heading">Country</p>
+          </Grid>
+
+          <Grid item md={2} className="flex-start">
+          <p className="item-count-heading">Cases</p>
+          </Grid>
+
+          <Grid item md={2} className="flex-start">
+          <p className="item-count-heading"
+        
+          >Recovered</p>
+          </Grid>
+
+          <Grid item md={2} className="flex-start">
+          <p className="item-count-heading">Recovery Rate</p>
+          </Grid>
+        
+          <Grid item md={2} className="flex-start">
+          <p className="item-count-heading">Death Rate</p>
+          </Grid>
+
+          </Grid>
+        </Grid>
+
+
+        { 
+         
+         coronaData.length > 0 ?
+
+      coronaData.map( (item) =>  
+      {
+          let recoveredRate = Math.round(100 *  item.recovered / item.cases)
+          let deathsRate =  Math.round(100 *  item.deaths / item.cases)
+
+        return(
+
+        <Grid item md={12}>
+          <Grid container>
+          <Grid item md={4} className="flex-start">
+            <img src="https://restcountries.eu/data/ind.svg" width="50px"  alt="flag" style={{margin:"3px", marginRight:"20px"}}/>
+            <p className="item-count-text">{item.country}</p>
+          </Grid>
+          <Grid item md={2} className="flex-start">
+        <div className="item-count"> <p className="item-count-text">{item.cases}</p> </div>
+          </Grid>
+          <Grid item md={2} className="flex-start">
+        <div className="item-count"> <p className="item-count-text">{item.recovered}</p> </div>
+          </Grid>
+          <Grid item md={2} className="flex-start">
+           <div className="item-count"
+             style={{backgroundColor:"#27ae60"}}
+           > <p className="item-count-text">{recoveredRate} %</p> </div>
+          </Grid>
+          <Grid item md={2} className="flex-start">
+           <div className="item-count"
+           style={{backgroundColor:"#e74c3c"}}
+        > <p className="item-count-text">{deathsRate} %</p> </div>
+          </Grid>
+          </Grid>
+        </Grid>
+
+      )
+      }
+      )
+
+         :
+
+         <p>loading</p>
+        
+        }
+
+        <div className="app-container"></div>
+      </Grid>
+    </Container>
+  );
+}
