@@ -48,13 +48,15 @@ export default function App() {
           />
         </Grid>
 
-        <Grid item md={12} className="headin-wrapper">
+        <Grid item md={12} xs={12} className="heading-wrapper" >
           <Grid container>
-            <Grid item xs={12} md={4} className="flex-start">
+            <Grid item xs={12} md={4} className="flex-start heading-wrapper">
               <p className="item-count-heading">Country</p>
             </Grid>
 
-            <Grid item md={2} xs={3} className="flex-start">
+            <Grid item md={2} xs={3} className="flex-start"
+           
+            >
               <p className="item-count-heading">Cases</p>
             </Grid>
 
@@ -72,10 +74,18 @@ export default function App() {
           </Grid>
         </Grid>
 
+
+
+
         {countryList.length > 0 ? (
           countryList.map(item => {
-            let recoveredRate = Math.round((100 * item.recovered) / item.cases);
-            let deathsRate = Math.round((100 * item.deaths) / item.cases);
+            let recoveredRate =  (Math.round((100 * item.recovered) / item.cases * 100) / 100).toFixed(2)
+            let deathsRate = (Math.round((100 * item.deaths) / item.cases * 100) / 100).toFixed(2)
+          
+            
+            
+
+
             const nationCode = countryCode.find(name => {
               return name.Name === item.country;
             });
@@ -99,14 +109,18 @@ export default function App() {
                   </Grid>
                   <Grid item xs={3} md={2} className="flex-start">
                     <div className="item-count">
-                      {" "}
-                      <p className="item-count-text">{item.cases}</p>{" "}
+                      <div>
+                      <p className="item-count-heading text-hide">Cases</p>
+                      <p className="item-count-text">{item.cases}</p>
+                    </div>
                     </div>
                   </Grid>
                   <Grid item xs={3} md={2} className="flex-start">
                     <div className="item-count">
-                      {" "}
+                    <div>
+                      <p className="item-count-heading text-hide">Recovered</p>
                       <p className="item-count-text">{item.recovered}</p>{" "}
+                      </div>
                     </div>
                   </Grid>
                   <Grid item xs={3} md={2} className="flex-start">
@@ -114,8 +128,10 @@ export default function App() {
                       className="item-count"
                       style={{ backgroundColor: "#27ae60" }}
                     >
-                      {" "}
+                       <div>
+                      <p className="item-count-heading text-hide">Recovery</p>
                       <p className="item-count-text">{recoveredRate} %</p>{" "}
+                    </div>
                     </div>
                   </Grid>
                   <Grid item xs={3} md={2} className="flex-start">
@@ -123,8 +139,10 @@ export default function App() {
                       className="item-count"
                       style={{ backgroundColor: "#e74c3c" }}
                     >
-                      {" "}
-                      <p className="item-count-text">{deathsRate} %</p>{" "}
+                      <div>
+                      <p className="item-count-heading text-hide">Death</p>
+                      <p className="item-count-text">{deathsRate} %</p>
+                      </div>
                     </div>
                   </Grid>
                 </Grid>
