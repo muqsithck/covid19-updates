@@ -48,14 +48,14 @@ export default function App() {
     >
       {countryData.length > 0 ? (
         <Grid container>
-          <Grid item md={4} xs={12}>
+          <Grid item md={4} xs={12} style={{marginRight:"10px"}}>
             <h1 className="heading-one">COVID19 </h1>
-            <h1 className="heading-two"> UPDATES </h1>
+            <h1 className="heading-two">UPDATES </h1>
           </Grid>
 
           <Grid
             item
-            md={8}
+            md={7}
             xs={12}
             style={{
               display: "flex",
