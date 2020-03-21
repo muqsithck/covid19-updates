@@ -229,7 +229,7 @@ export default function App() {
               );
             })
           ) : (
-            <p>loading</p>
+            <p className="footer-text">No results</p>
           )}
 
           <Grid
