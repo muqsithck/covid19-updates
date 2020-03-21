@@ -42,7 +42,10 @@ body {
 }
 
 .app-container{
-min-height: 1000px}
+min-height: 1000px;
+padding: 50px;
+
+}
 
 .heading-one {
   color: #fff;
@@ -149,6 +152,11 @@ input:focus {
 
 
 @media only screen and (max-width: 900px) {
+  
+.app-container{
+  padding: 30px;
+  }
+
   .heading-wrapper {
     display: none;
   }

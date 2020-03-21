@@ -44,7 +44,6 @@ export default function App() {
     <Container
       maxWidth="lg"
       className="app-container"
-      style={{ padding: "50px" }}
     >
       {countryData.length > 0 ? (
         <Grid container>
@@ -241,7 +240,10 @@ export default function App() {
           >
             <div>
             <p className="footer-text">
-            Source from worldometers.info
+            Source from  <a target="blank" href="https://www.worldometers.info">worldometers.info</a>
+            </p>
+            <p className="footer-text">
+            API from <a target="blank" href="https://www.programmableweb.com/">programmableweb.com</a>
             </p>
             <p className="footer-text">
           Last update at
