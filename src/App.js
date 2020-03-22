@@ -67,11 +67,11 @@ export default function App() {
                   <div>
                     <p
                       className="caption"
-                      style={{ color: "#f1c40f" }}
+                      style={{ color: "#3498db" }}
                     >
                       Total Cases
                     </p>
-                    <p className="title-large" style={{ color: "#f1c40f" }}>
+                    <p className="title-large" style={{ color: "#3498db" }}>
                       {worldData.cases}
                     </p>
                   </div>
@@ -183,7 +183,7 @@ export default function App() {
                       <p className="titile">{item.country}</p>
                     </Grid>
                     <Grid item xs={3} md={2} className="flex-start">
-                      <div className="country-data-item" style={{backgroundColor:"#f1c40f"}} >
+                      <div className="country-data-item" style={{backgroundColor:"#3498db"}} >
                         <div>
                           <p className="caption text-hide">Cases</p>
                           <p className="titile">{item.cases}</p>
