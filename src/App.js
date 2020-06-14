@@ -11,11 +11,11 @@ export default function App() {
   const [search, setSearch] = useState("");
 
   useEffect(() => {
-    axios.get("https://corona.lmao.ninja/countries").then(res => {
+    axios.get("https://corona.lmao.ninja/v2/countries").then(res => {
       setCountryData([...res.data]);
     });
 
-    axios.get("https://corona.lmao.ninja/all").then(res => {
+    axios.get("https://corona.lmao.ninja/v2/all").then(res => {
       console.log("res", res.data);
       setWorldData(res.data);
       setDate(res.data.updated);
